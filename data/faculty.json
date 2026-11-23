@@ -1,0 +1,14 @@
+[
+  {
+    "username": "faculty",
+    "password_hash": "scrypt:32768:8:1$2cS1ixBtdCxNRToC$8dd3649fe6620a9451a49de6c9d036a78bcf6320b3028c802ab636982443c562d178f479df3f66ac04aa97d67dbf07c651572a1759668f6d58026fed3cdb07ad"
+  },
+  {
+    "username": "yash",
+    "password_hash": "scrypt:32768:8:1$hm1z2dIHcq38OxMb$af9e599f79822697b6a0d088d8f710d45c9bd64420be6a1a2391e0cc0aabc34663c83c964d19f81400251848ff902aa4167159594be5379d20e39aae3ee082f7"
+  },
+  {
+    "username": "pp",
+    "password_hash": "scrypt:32768:8:1$mShGE4AB9BhuIXRW$469f4f6a9a28da0295b90b4ab53868f016aa4d184b68287f459122a4f0260827d40549adced9ecba9bfdfca6c703d90a7278f2824aac9ae94fef5bf0ae3a5d99"
+  }
+]

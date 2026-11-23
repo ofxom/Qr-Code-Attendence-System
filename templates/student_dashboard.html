@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Student dashboard | QR Attendance</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="{{ url_for('student_dashboard') }}">QR Attendance</a>
+    <form method="post" action="{{ url_for('logout') }}"><button class="button secondary" type="submit">Log out</button></form>
+  </header>
+  <main class="page">
+    <section class="page-heading">
+      <div><p class="eyebrow">STUDENT DASHBOARD</p><h1>Hello, {{ student.name }}</h1><p class="muted">Roll number: {{ student.roll_number }}</p></div>
+      <a class="button" href="{{ url_for('scan_page') }}">Scan attendance QR</a>
+    </section>
+    <section class="panel">
+      <div class="section-heading"><h2>Attendance by subject</h2><a href="{{ url_for('student_attendance') }}">View history</a></div>
+      {% if summary %}
+        <div class="summary-grid">
+          {% for item in summary %}
+            <article class="summary-card">
+              <h3>{{ item.subject }}</h3>
+              <p><strong>{{ item.percentage }}%</strong> attendance</p>
+              <p class="muted">{{ item.attended }} of {{ item.total }} closed sessions</p>
+            </article>
+          {% endfor %}
+        </div>
+      {% else %}
+        <p class="muted">Your subject percentages will appear after faculty closes sessions.</p>
+      {% endif %}
+    </section>
+    <p class="small muted">To mark attendance, log in on your phone and scan the QR code displayed by your faculty member.</p>
+  </main>
+</body>
+</html>

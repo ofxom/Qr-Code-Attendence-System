@@ -1,0 +1,20 @@
+[
+  {
+    "id": "XljqRZoN9oBCNwI6",
+    "subject": "Java Lab",
+    "faculty_username": "yash",
+    "created_at": "2026-11-18T17:10:29.319890+00:00",
+    "status": "active",
+    "current_token": "JhZvszRwuXeY_ETdCqgUw91-NjY2MjMVQ3PbcblLu88",
+    "token_expires_at": "2026-11-18T17:14:46.490438+00:00"
+  },
+  {
+    "id": "rD0MbwOW2ejHdbsl",
+    "subject": "dsa",
+    "faculty_username": "yash",
+    "created_at": "2026-11-19T02:16:24.693693+00:00",
+    "status": "active",
+    "current_token": "UliFKiPNLbzGBk8sL7VB6y2mXPE-9hEbgPeNxh1nRAc",
+    "token_expires_at": "2026-11-19T02:30:08.594081+00:00"
+  }
+]

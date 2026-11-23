@@ -1,0 +1,12 @@
+[
+  {
+    "name": "omm",
+    "roll_number": "12345",
+    "password_hash": "scrypt:32768:8:1$gEzNIuIAbACxYrKs$36e2779ede9eb1e223a018233b9a0c51db98927da995ff70a5b9b2d8d70b4891e1da4eb0cb51ef9d85abca66a48d578edba5426ca9993495634ebd87fd4c0a89"
+  },
+  {
+    "name": "om",
+    "roll_number": "48",
+    "password_hash": "scrypt:32768:8:1$xVIRiB20PD70kiQb$5b009ca4279c28920c55a4f467cd7d5d47f74d4aa04b76cba0903ef5e9fc101691407802a7cf520ddd84d7bee54a20b78839b91bc373f95eb95b886e351cf715"
+  }
+]

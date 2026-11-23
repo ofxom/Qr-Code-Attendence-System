@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Faculty dashboard | QR Attendance</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="{{ url_for('faculty_dashboard') }}">QR Attendance</a>
+    <form method="post" action="{{ url_for('logout') }}"><button class="button secondary" type="submit">Log out</button></form>
+  </header>
+  <main class="page">
+    <section class="page-heading">
+      <div><p class="eyebrow">FACULTY</p><h1>Your dashboard</h1><p class="muted">Start a session and let students scan its rotating QR code.</p></div>
+    </section>
+    {% with messages = get_flashed_messages(with_categories=true) %}
+      {% for category, message in messages %}<div class="notice {{ category }}">{{ message }}</div>{% endfor %}
+    {% endwith %}
+    <section class="panel">
+      <h2>Start attendance</h2>
+      <form method="post" action="{{ url_for('create_session') }}" class="inline-form">
+        <label class="sr-only" for="subject">Subject name</label>
+        <input id="subject" name="subject" placeholder="For example: Data Structures" required>
+        <button type="submit">Start new session</button>
+      </form>
+    </section>
+    <section class="section-heading"><h2>Your sessions</h2></section>
+    {% if sessions %}
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Subject</th><th>Started</th><th>Status</th><th>Marked</th><th>Actions</th></tr></thead>
+          <tbody>
+          {% for item in sessions|reverse %}
+            <tr>
+              <td>{{ item.subject }}</td>
+              <td>{{ item.created_at|replace('T', ' ')|replace('+00:00', ' UTC') }}</td>
+              <td><span class="badge {{ item.status }}">{{ item.status }}</span></td>
+              <td>{{ item.attendance_count }}</td>
+              <td class="actions">
+                {% if item.status == "active" %}
+                  <a class="text-button" href="{{ url_for('qr_display', session_id=item.id) }}">Show QR</a>
+                  <form method="post" action="{{ url_for('close_session', session_id=item.id) }}" onsubmit="return confirm('End this attendance session?')">
+                    <button class="text-button danger-text" type="submit">End session</button>
+                  </form>
+                {% endif %}
+                <a class="text-button" href="{{ url_for('faculty_attendance', session_id=item.id) }}">View records</a>
+              </td>
+            </tr>
+          {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    {% else %}
+      <div class="empty-state">No sessions yet. Start one above.</div>
+    {% endif %}
+  </main>
+</body>
+</html>

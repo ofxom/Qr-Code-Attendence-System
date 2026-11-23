@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Faculty registration | QR Attendance</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <main class="auth-card">
+    <div class="brand-mark">QR</div>
+    <h1>Create faculty account</h1>
+    <p class="muted">Choose a faculty username and password.</p>
+    {% with messages = get_flashed_messages(with_categories=true) %}
+      {% for category, message in messages %}
+        <div class="notice {{ category }}">{{ message }}</div>
+      {% endfor %}
+    {% endwith %}
+    <form method="post" class="form-stack">
+      <label for="username">Faculty username</label>
+      <input id="username" name="username" autocomplete="username" required>
+      <label for="password">Password (at least 8 characters)</label>
+      <input id="password" name="password" type="password" minlength="8" autocomplete="new-password" required>
+      <button type="submit">Create faculty account</button>
+    </form>
+    <p class="small center"><a href="{{ url_for('login') }}">Back to login</a></p>
+  </main>
+</body>
+</html>

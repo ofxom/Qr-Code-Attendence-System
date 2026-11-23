@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Attendance QR | {{ attendance_session.subject }}</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="{{ url_for('faculty_dashboard') }}">QR Attendance</a>
+    <a class="text-button" href="{{ url_for('faculty_dashboard') }}">Dashboard</a>
+  </header>
+  <main class="page narrow">
+    <section class="panel qr-panel">
+      <p class="eyebrow">LIVE ATTENDANCE SESSION</p>
+      <h1>{{ attendance_session.subject }}</h1>
+      <p class="muted">Students can scan this code while it is displayed. It refreshes every 30 seconds.</p>
+      <img id="qr-image" class="qr-image" src="{{ url_for('qr_image', session_id=attendance_session.id) }}" alt="Current attendance QR code">
+      <p id="qr-status" class="notice success" aria-live="polite">Loading current QR code…</p>
+      <p class="small muted">The QR contains a short-lived token. The same current code works for multiple students and does not expire after one scan.</p>
+      <div class="button-row">
+        <a class="button secondary" href="{{ url_for('faculty_attendance', session_id=attendance_session.id) }}">View marked attendance</a>
+        <form method="post" action="{{ url_for('close_session', session_id=attendance_session.id) }}" onsubmit="return confirm('End this attendance session?')">
+          <button class="button danger" type="submit">End session</button>
+        </form>
+      </div>
+    </section>
+  </main>
+  <script>
+    window.qrRefreshUrl = {{ url_for('current_qr', session_id=attendance_session.id)|tojson }};
+    window.qrImageUrl = {{ url_for('qr_image', session_id=attendance_session.id)|tojson }};
+    window.sessionQrRefresh = true;
+  </script>
+  <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>

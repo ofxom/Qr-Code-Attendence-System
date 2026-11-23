@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Scan QR | QR Attendance</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="{{ url_for('student_dashboard') }}">QR Attendance</a>
+    <a class="text-button" href="{{ url_for('student_dashboard') }}">Dashboard</a>
+  </header>
+  <main class="page narrow">
+    <section class="panel">
+      <p class="eyebrow">MARK ATTENDANCE</p>
+      <h1>Scan the faculty QR code</h1>
+      <p class="muted">Allow camera access and hold the code inside the frame.</p>
+      <div id="reader" class="scanner"></div>
+      <div id="scan-message" class="notice" role="status" aria-live="polite">Starting camera…</div>
+      <div class="button-row">
+        <button id="start-scan" class="button secondary" type="button">Start camera</button>
+        <button id="stop-scan" class="button secondary" type="button">Stop camera</button>
+        <a class="text-button" href="{{ url_for('student_attendance') }}">Attendance history</a>
+      </div>
+    </section>
+  </main>
+  <script src="https://unpkg.com/html5-qrcode@2.3.8/html5-qrcode.min.js"></script>
+  <script>
+    window.markAttendanceUrl = {{ url_for('mark_attendance')|tojson }};
+  </script>
+  <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
